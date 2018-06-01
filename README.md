@@ -27,13 +27,23 @@ Pretty-email supports three template engines nameley :-
       templateFile:"/views/myPrettyEmail" //no extension needed
     })
 ```
+
+
+**Configurations**
+  * **service** : well known smtp service that are supported by nodemailer
+  * **auth** : credentials used to login to the service provider  
+  * **templateEngine**: Type of template engine to render, options include **handlebars**, **ejs**, **pug**
+  * **templateFile**: Path to the template file. No need to add the extension.
+
+**NOTE** : `templateFile` needs the first `/` to determine exactly where the file  for instance
+`templateFile:"/mysubfolder/templateName" ` or  `templateFile:/templateName` will work  but `templateFile:subfolder/file` will not
+
 Since pretty-email uses nodemailer, most of the options available with nodemailer can be used with pretty-email as well such as 
 
 * **port**
-
 * **smtp**
 
-etc
+for a complete list of configurations you can check out [nodemailer ](https://github.com/nodemailer/nodemailer)
 
 **MailOptions**
 After you configure your mail transport settings simply put in the options of the reciepent and sender in the `mailOptions` settings
@@ -74,11 +84,16 @@ After you configure your mail transport settings simply put in the options of th
     })                                            
 ```
 
+
+
+
 As with `config` most of the options that come with node-mailer can be used such as :-
  * attachments
  * header
  * messageId
- etc
+
+ for a complete list of options you can check out [nodemailer ](https://github.com/nodemailer/nodemailer)
+
 
  And finally 
 

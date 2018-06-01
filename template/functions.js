@@ -12,10 +12,10 @@ let engine = "handlebars"
 
 
 function getRootPath (){
-    var root= _path.dirname(require.main.filename) || process.cwd()
-    
+    var root= _path.dirname(require.main.filename) || process.cwd() 
     return root
 }
+
 
 function getFilePath(filepath){
     const root = getRootPath()
@@ -26,20 +26,14 @@ function getFilePath(filepath){
     }
    
     const fullpath = root+"/"+pathWithoutExtension+"."+getFileExtension()
-
     return fullpath
-
-
-    
-
- 
 }
 
 function getFileExtension(){
     switch(engine){
         case "handlebars":
             return "handlebars"
-            
+
         case "ejs":
             return "ejs"
             
@@ -62,25 +56,16 @@ async function putData(template,data){
     return template
 }
 
-
-
-
 var readHTMLFile =   function(path, callback) {
-
-    
 	fs.readFile(path, {encoding: 'utf-8'},  async function (err, html) {
 		if (err) {
-			throw err;
-
+			throw err
         }
         else{
             callback(null, html)
         }
-
     });
-
 };
-
 
 
 
@@ -89,40 +74,23 @@ var readHTMLFile =   function(path, callback) {
          this.engine = engine
      }
      output(options , data){
-
-       
-        
-       
         engine = this.engine
         const filePath = getFilePath(options.file)
-    
-
         const promise = new Promise((resolve,reject)=>{
             readHTMLFile(filePath, async function (err, source){
                 if (err) {reject(err) }
                
                 const template= await compiletoHtml(source,engine)
-  
                 const compiled = putData(template,data)
                  resolve(compiled)
-                
-    
-    
             })
         })
         return promise.then((html)=>{
-
             return html
-
-
         })
         .catch(e=>new Error(e))
 
-
-
     }
-
-
 }
 
 module.exports = Template

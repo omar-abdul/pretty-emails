@@ -8,28 +8,19 @@ const Ejs = require("ejs")
 const Pug =require("pug")
 
 
-
-
-
-
  async function compileTemplate(engine,source) {
      let compiledHtml = null
 
     switch(engine){
         case "handlebars":
             compiledHtml=  compileHandlebars(source)
-            break
-            
+            break        
         case "ejs":
             compiledHtml=   compileEjs(source)
             break
-            
-
         case "pug":
             compiledHtml=  compilePug(source)
             break
-            
-
         default :
             compiledHtml=  compileHandlebars(source)
             break
@@ -41,16 +32,12 @@ const Pug =require("pug")
 }
 
   function compileHandlebars(template){
-    
-
         var html =  Handlebars.compile(template)
-
         return  html
 }
 
 
  function compileEjs(template){
-
         var html =  Ejs.compile(template)
         return  html
  
